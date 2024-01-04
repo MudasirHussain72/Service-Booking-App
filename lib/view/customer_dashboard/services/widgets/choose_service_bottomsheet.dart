@@ -21,8 +21,8 @@ class ChooseBookServiceBottomSheet extends StatelessWidget {
       height: size.height / 1.8,
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Text('Choose a service from $shopName to book your appoinment',
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+          child: Text('Choose a service from $shopName to book',
               style: Theme.of(context)
                   .textTheme
                   .headline5!

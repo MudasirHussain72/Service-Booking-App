@@ -37,7 +37,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     const Text(
-                      "The Parlour App",
+                      "IN-Remote Services",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 24,
@@ -47,7 +47,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         // "Watch your favoirite series or movies on\nonly one platform.You can watch it\nanytime and anywhere",
-                        'Beauty at your fingerprints\nBook your next salon appointment with ease',
+                        'IN-Remote Services at your fingerprints\nBook your next service with ease',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,

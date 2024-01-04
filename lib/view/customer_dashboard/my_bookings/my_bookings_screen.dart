@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp/res/component/loading_widget.dart';
 import 'package:fyp/res/component/my_appbar.dart';
 import 'package:fyp/view/customer_dashboard/my_bookings/my_bookings_in_shop.dart';
 import 'package:fyp/view/customer_dashboard/my_bookings/widgets/shop_booking_card.dart';
@@ -26,7 +27,7 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
             //top bar
             MyAppBar(
                 oniconTap: () {},
-                title: 'My Bookings by shops',
+                title: 'My Bookings',
                 icon: CupertinoIcons.calendar),
             // show bookings in all shops area
             StreamBuilder(
@@ -36,6 +37,9 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
                   return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.data!.docs.length == 0) {
+                  return Expanded(child: const Center(child: Text('No Data')));
                 } else {
                   return Expanded(
                     child: ListView.builder(

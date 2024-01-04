@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CreateShopController()),
       ],
       child: MaterialApp(
-        title: 'The Parlour App',
+        title: 'IN-Remote Services',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
         initialRoute: RouteName.splashScreen,

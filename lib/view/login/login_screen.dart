@@ -41,15 +41,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: size.height * .01),
-                  Text("Welcome to",
-                      style: Theme.of(context).textTheme.headline3),
-                  SizedBox(height: size.height * .002),
+                  Text(
+                    "Welcome to\nIN-Remote Services",
+                    style: Theme.of(context).textTheme.headline3,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: size.height * .01),
                   Center(
                       child: Image(
                     image: const AssetImage('assets/images/logo.png'),
                     width: size.width / 2,
                   )),
-                  SizedBox(height: size.height * .04),
+                  SizedBox(height: size.height * .01),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text("Sign in to Continue",
