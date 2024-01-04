@@ -7,10 +7,12 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class ShopDisplayCard extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
+  final playlistCategory;
   final snap;
   const ShopDisplayCard({
     super.key,
     required this.snap,
+    required this.playlistCategory,
   });
 
   @override
@@ -64,7 +66,8 @@ class _ShopDisplayCardState extends State<ShopDisplayCard> {
         screen: DisplayServicesScreen(
             shopAddress: widget.snap['address'],
             shopUid: widget.snap['uid'],
-            shopName: widget.snap['shopName']),
+            shopName: widget.snap['shopName'],
+            playlistCategory: widget.playlistCategory),
         withNavBar: false,
         pageTransitionAnimation: PageTransitionAnimation.fade,
       ),

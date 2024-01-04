@@ -122,7 +122,9 @@ class _NearbyDataState extends State<NearbyData> {
                         itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.only(
                               bottom: 40, top: 20, left: 20),
-                          child: ShopDisplayCard(snap: filteredData[index]),
+                          child: ShopDisplayCard(
+                              snap: filteredData[index],
+                              playlistCategory: value.selectedTapOption),
                         ),
                       ),
                     );

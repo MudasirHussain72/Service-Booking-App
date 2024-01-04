@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:fyp/res/component/my_appbar.dart';
 import 'package:fyp/res/component/round_button.dart';
 import 'package:fyp/res/component/shop_service_display_card.dart';
+import 'package:fyp/view/customer_dashboard/services/play_list_screen.dart';
 import 'package:fyp/view/customer_dashboard/services/widgets/choose_service_bottomsheet.dart';
 import 'package:fyp/view_model/services/session_manager.dart';
 
 class DisplayServicesScreen extends StatefulWidget {
+  final playlistCategory;
   final shopName;
   final shopUid;
   final shopAddress;
@@ -14,7 +16,8 @@ class DisplayServicesScreen extends StatefulWidget {
       {super.key,
       required this.shopUid,
       required this.shopName,
-      required this.shopAddress});
+      required this.shopAddress,
+      required this.playlistCategory});
 
   @override
   State<DisplayServicesScreen> createState() => _DisplayServicesScreenState();
@@ -49,7 +52,21 @@ class _DisplayServicesScreenState extends State<DisplayServicesScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
-          child: Column(children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            RoundButton(
+              buttonColor: Colors.grey.shade200,
+              textColor: Colors.grey.shade800,
+              title: 'Quick fix by yourself',
+              onPress: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PlaylistScreen(
+                        playlistCategory: widget.playlistCategory),
+                  ),
+                );
+              },
+            ),
             MyAppBar(
                 oniconTap: () {},
                 title: '${widget.shopName} services',
