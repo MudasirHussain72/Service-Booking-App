@@ -6,6 +6,7 @@ import 'package:fyp/res/color.dart';
 import 'package:fyp/view/barber_dashboard/profile/profile_screen.dart';
 import 'package:fyp/view/customer_dashboard/home/customer_home_screen.dart';
 import 'package:fyp/view/customer_dashboard/my_bookings/my_bookings_screen.dart';
+import 'package:fyp/view/help_&_support/help_and_support_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class CustomerDashboardScreen extends StatefulWidget {
@@ -33,6 +34,7 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
       //   ),
       // ),
       const MyBookingsScreen(),
+      const HelpAndSupportScreen(),
       const ProfileScreen(),
     ];
   }
@@ -56,6 +58,12 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
           icon: Icon(CupertinoIcons.calendar, color: AppColors.navIconColor),
           inactiveIcon:
               Icon(CupertinoIcons.calendar, color: Colors.grey.shade100),
+          activeColorPrimary: AppColors.primaryIconColor),
+      PersistentBottomNavBarItem(
+          icon: Icon(Icons.contact_support_outlined,
+              color: AppColors.navIconColor),
+          inactiveIcon:
+              Icon(Icons.contact_support_outlined, color: Colors.grey.shade100),
           activeColorPrimary: AppColors.primaryIconColor),
       PersistentBottomNavBarItem(
           icon: Icon(Icons.person_outline, color: AppColors.navIconColor),
