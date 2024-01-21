@@ -1,5 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/res/color.dart';
@@ -7,6 +8,8 @@ import 'package:fyp/view/barber_dashboard/profile/profile_screen.dart';
 import 'package:fyp/view/customer_dashboard/home/customer_home_screen.dart';
 import 'package:fyp/view/customer_dashboard/my_bookings/my_bookings_screen.dart';
 import 'package:fyp/view/help_&_support/help_and_support_screen.dart';
+import 'package:fyp/view_model/services/notification_services.dart';
+import 'package:fyp/view_model/services/session_manager.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class CustomerDashboardScreen extends StatefulWidget {
@@ -17,7 +20,8 @@ class CustomerDashboardScreen extends StatefulWidget {
       _CustomerDashboardScreenState();
 }
 
-class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
+class _CustomerDashboardScreenState extends State<CustomerDashboardScreen>
+    with WidgetsBindingObserver {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
   List<Widget> _buildScreen() {
@@ -71,6 +75,44 @@ class _CustomerDashboardScreenState extends State<CustomerDashboardScreen> {
           activeColorPrimary: AppColors.primaryIconColor),
     ];
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    NotificationServices().getDeviceToken().then((value) {
+      FirebaseFirestore.instance
+          .collection('deviceTokens')
+          .doc(SessionController().userId.toString())
+          .update({'deviceToken': value});
+    });
+  }
+
+  // @override
+  // void dispose() {
+  //   WidgetsBinding.instance.removeObserver(this);
+  //   super.dispose();
+  // }
+
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+
+  //   if (state == AppLifecycleState.resumed) {
+  //     FirebaseFirestore.instance
+  //         .collection('User')
+  //         .doc(SessionController().userId.toString())
+  //         .update({'onlineStatus': 'online'});
+  //   } else {
+  //     FirebaseFirestore.instance
+  //         .collection('User')
+  //         .doc(SessionController().userId.toString())
+  //         .update({
+  //       'onlineStatus': DateTime.now().microsecondsSinceEpoch.toString()
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/res/color.dart';
@@ -5,6 +6,8 @@ import 'package:fyp/view/barber_dashboard/all_bookings/my_all_shop_bookings.dart
 import 'package:fyp/view/barber_dashboard/home/barber_home_screen.dart';
 import 'package:fyp/view/barber_dashboard/profile/profile_screen.dart';
 import 'package:fyp/view/help_&_support/help_and_support_screen.dart';
+import 'package:fyp/view_model/services/notification_services.dart';
+import 'package:fyp/view_model/services/session_manager.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class BarberDashboardScreen extends StatefulWidget {
@@ -14,7 +17,8 @@ class BarberDashboardScreen extends StatefulWidget {
   State<BarberDashboardScreen> createState() => _BarberDashboardScreenState();
 }
 
-class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
+class _BarberDashboardScreenState extends State<BarberDashboardScreen>
+    with WidgetsBindingObserver {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
   List<Widget> _buildScreen() {
@@ -67,6 +71,19 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
           inactiveIcon: Icon(Icons.person_outline, color: Colors.grey.shade100),
           activeColorPrimary: AppColors.primaryIconColor),
     ];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    NotificationServices().getDeviceToken().then((value) {
+      FirebaseFirestore.instance
+          .collection('deviceTokens')
+          .doc(SessionController().userId.toString())
+          .update({'deviceToken': value});
+    });
   }
 
   @override
