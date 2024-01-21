@@ -29,7 +29,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
   @override
   void initState() {
     super.initState();
-    notificationServices.requestNotificationPermision();
+    // notificationServices.requestNotificationPermision();
     notificationServices.firebaseInit(context);
     notificationServices.setupInteractMessage(context);
     // notificationServices.isTokenRefresh();
@@ -45,6 +45,7 @@ class _BarberHomeScreenState extends State<BarberHomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size * 1;
     return Scaffold(
+      // backgroundColor: Theme.of(context).colorScheme.onBackground,
       body: Column(children: [
         SizedBox(height: size.height / 11),
         // my app bar custom component widget

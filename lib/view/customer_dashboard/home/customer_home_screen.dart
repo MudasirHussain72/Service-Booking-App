@@ -33,7 +33,7 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
   @override
   void initState() {
     super.initState();
-    notificationServices.requestNotificationPermision();
+    // notificationServices.requestNotificationPermision();
     notificationServices.firebaseInit(context);
     //notificationServices.isTokenRefresh();
     notificationServices.getDeviceToken().then((value) {

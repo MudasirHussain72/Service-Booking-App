@@ -23,7 +23,7 @@ class ChooseLocationButton extends StatelessWidget {
         width: double.infinity,
         // height: ,
         decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: Theme.of(context).colorScheme.primary,
             border: Border.all(color: AppColors.textFieldDefaultBorderColor),
             borderRadius: const BorderRadius.all(Radius.circular(8))),
         child:

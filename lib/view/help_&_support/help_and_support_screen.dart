@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/res/color.dart';
 import 'package:fyp/res/component/my_appbar.dart';
+import 'package:fyp/view/help_&_support/FAQsScreen.dart';
 import 'package:fyp/view/help_&_support/contact_support_form.dart';
 import 'package:fyp/view_model/services/session_manager.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -17,12 +18,34 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // actions: [ElevatedButton(onPressed: () {}, child: Text('FAQs'))],
+        actions: [
+          TextButton.icon(
+              icon: Icon(
+                Icons.help,
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+              onPressed: () {
+                PersistentNavBarNavigator.pushNewScreen(
+                  context,
+                  screen: const FAQsScreen(),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.fade,
+                );
+              },
+              label: Text(
+                'FAQs',
+                style: Theme.of(context).textTheme.bodySmall,
+              ))
+        ],
+      ),
       body: Column(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           MyAppBar(
               oniconTap: () => PersistentNavBarNavigator.pushNewScreen(context,
-                  screen: ContactSupportForm(),
+                  screen: const ContactSupportForm(),
                   withNavBar: false,
                   pageTransitionAnimation: PageTransitionAnimation.fade),
               title: 'Contact Support',
@@ -37,7 +60,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                 return const Center(child: CircularProgressIndicator());
               }
               if (snapshot.data!.docs.length == 0) {
-                return Expanded(child: const Center(child: Text('No Data')));
+                return const Expanded(child: Center(child: Text('No Data')));
               } else {
                 return Expanded(
                   child: ListView.builder(
@@ -45,7 +68,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     itemBuilder: (context, index) {
                       DocumentSnapshot doc = snapshot.data!.docs[index];
                       return Container(
-                        margin: EdgeInsets.only(bottom: 20),
+                        margin: const EdgeInsets.only(bottom: 20),
                         // height: MediaQuery.of(context).size.height * .20,
                         width: double.infinity,
                         padding: const EdgeInsetsDirectional.all(20),

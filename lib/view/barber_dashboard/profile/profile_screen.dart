@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/res/color.dart';
 import 'package:fyp/res/component/rectangle_button.dart';
@@ -11,6 +12,7 @@ import 'package:fyp/utils/routes/route_name.dart';
 import 'package:fyp/view/login/login_screen.dart';
 import 'package:fyp/view_model/profile/profile_controller.dart';
 import 'package:fyp/view_model/services/session_manager.dart';
+import 'package:fyp/view_model/services/theme_settings.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -144,6 +146,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             title: 'Phone',
                             value: document['phone'] ?? '*** *** ***',
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              TextButton.icon(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  CupertinoIcons.moon,
+                                  color: AppColors.iconBlueColor,
+                                ),
+                                label: Text(
+                                  'Dark mode',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Consumer<ThemeChanger>(
+                                builder: (context, provider, child) =>
+                                    CupertinoSwitch(
+                                  value: provider.isDarkMode,
+                                  onChanged: (value) {
+                                    provider.setTheme(value);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                           InkWell(
                               onTap: () {
                                 FirebaseAuth auth = FirebaseAuth.instance;
@@ -164,7 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 );
                               },
                               child: const RectangleButton(
-                                  title: 'Sign Out', iconData: Icons.logout))
+                                  title: 'Sign Out', iconData: Icons.logout)),
                         ],
                       );
                     } else {

@@ -100,7 +100,7 @@ class _ShopDisplayCardState extends State<ShopDisplayCard> {
                     gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [Colors.transparent, AppColors.primaryColor]))),
+                        colors: [Colors.transparent, Colors.green]))),
             Align(
               alignment: Alignment.bottomLeft,
               child: Padding(

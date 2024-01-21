@@ -169,7 +169,8 @@ class _CreateShopScreenState extends State<CreateShopScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 5),
                             decoration: BoxDecoration(
-                                color: AppColors.secondaryColor,
+                                // color: AppColors.secondaryColor,
+                                color: Theme.of(context).colorScheme.primary,
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Color(0xffeeeeee),

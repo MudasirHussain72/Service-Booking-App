@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // main colors
-  static Color navIconColor = Colors.grey.shade800;
   static const Color primaryColor = Color(0xffFFFFFF);
   static const Color secondaryColor = Color(0xffEEF1F3);
   // main dark colors

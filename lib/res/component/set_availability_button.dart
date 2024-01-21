@@ -22,7 +22,8 @@ class SetAvailability extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           width: size.width / 2.5,
           decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+              color: Theme.of(context).colorScheme.primary,
+              // color: AppColors.whiteColor,
               border: Border.all(color: AppColors.textFieldDefaultBorderColor),
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Row(
@@ -40,7 +41,8 @@ class SetAvailability extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           width: size.width / 2.5,
           decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+              color: Theme.of(context).colorScheme.primary,
+              // color: AppColors.whiteColor,
               border: Border.all(color: AppColors.textFieldDefaultBorderColor),
               borderRadius: const BorderRadius.all(Radius.circular(8))),
           child: Row(

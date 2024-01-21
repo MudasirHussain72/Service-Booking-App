@@ -35,7 +35,7 @@ class BookAppointmentScreen extends StatefulWidget {
 
 class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   String? shopUid;
-  Map<String, dynamic>? paymentIntentData;
+  // Map<String, dynamic>? paymentIntentData;
   String? shopDeviceToken;
   var bookingDocId;
   var uuid = Uuid();
@@ -120,22 +120,25 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('${widget.serviceName} Booking'.toUpperCase()),
-      ),
-      body: Center(
-        child: BookingCalendar(
-          bookingService: mockBookingService,
-          convertStreamResultToDateTimeRanges: convertStreamResultFirebase,
-          getBookingStream: getBookingStreamFirebase,
-          uploadBooking: uploadBookingFirebase,
-          loadingWidget: const Text('Fetching data...'),
-          uploadingWidget: const CircularProgressIndicator(),
-          startingDayOfWeek: StartingDayOfWeek.tuesday,
-          wholeDayIsBookedWidget:
-              const Text('Sorry, for this day everything is booked'),
-          disabledDays: const [6, 7],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('${widget.serviceName} Booking'.toUpperCase()),
+        ),
+        body: Center(
+          child: BookingCalendar(
+            bookingService: mockBookingService,
+            convertStreamResultToDateTimeRanges: convertStreamResultFirebase,
+            getBookingStream: getBookingStreamFirebase,
+            uploadBooking: uploadBookingFirebase,
+            loadingWidget: const Text('Fetching data...'),
+            uploadingWidget: const CircularProgressIndicator(),
+            startingDayOfWeek: StartingDayOfWeek.tuesday,
+            wholeDayIsBookedWidget:
+                const Text('Sorry, for this day everything is booked'),
+            disabledDays: const [6, 7],
+          ),
         ),
       ),
     );
@@ -186,38 +189,39 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
               .doc(bookingDocId!)
               .set(newBooking.toJson())
               .then((value) async {
-            // log(shopDeviceToken.toString());
-            // log(bookingDocId.toString());
+            log(shopDeviceToken.toString());
+            log(bookingDocId.toString());
             // // notification functionality will be written here
-            // var data = {
-            //   'to': shopDeviceToken,
-            //   'priority': 'high',
-            //   // 'android': {
-            //   'notification': {
-            //     'title': 'Hello Dear',
-            //     'body':
-            //         'Booking from ${widget.userName} for ${widget.serviceName}',
-            //     'android_channel_id': "Messages",
-            //     'count': 10,
-            //     'notification_count': 12,
-            //     'badge': 12,
-            //     "click_action": 'asif',
-            //     'color': '#eeeeee',
-            //   },
-            //   // },
-            //   'data': {
-            //     'type': 'msg',
-            //     // 'id': '12456',
-            //   }
-            // };
-            // await http.post(
-            //     Uri.parse('https://fcm.googleapis.com/fcm/send'),
-            //     body: jsonEncode(data),
-            //     headers: {
-            //       'Content-Type': 'application/json; charset=UTF-8',
-            //       'Authorization':
-            //           'key=AAAA-DnuRMI:APA91bEqnn3baxUKSOAGZL_aPhNRzZO_NIH4ITJl5Hkp6eUux7LHZX5IDuHgRorG7R3q5YBZ_2qUEsXnq5X8OBo9h9iRg1RHfyMaD0hm1oI4TfrIyl3zHKpYRwrvM-TShXcl-nemfZNU'
-            //     });
+            var data = {
+              'to': shopDeviceToken,
+              'priority': 'high',
+              // 'android': {
+              'notification': {
+                'title': 'Hello Dear',
+                'body':
+                    'Booking from ${widget.userName} for ${widget.serviceName}',
+                'android_channel_id': "Messages",
+                'count': 10,
+                'notification_count': 12,
+                'badge': 12,
+                "click_action": 'asif',
+                'color': '#eeeeee',
+              },
+              // },
+              'data': {
+                'type': 'msg',
+                // 'id': '12456',
+              }
+            };
+            await http.post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
+                body: jsonEncode(data),
+                headers: {
+                  'Content-Type': 'application/json; charset=UTF-8',
+                  'Authorization':
+                      'key=AAAAPYagRB8:APA91bE1FGVhmf_aJKRHcXMZt3qTqfrXdcv-U_ZmHY32u9XfoBcFeyNc9_qXhjS5X9oEH0um4Z9odrwRVxXMT6kjtLdw_0JzEbFo0_MpOUWv1NJNppSOmnNTMTEH0ky9Q-7r5H2uCV6y'
+                }).then((value) {
+              log(value.statusCode.toString());
+            });
             Navigator.pop(context);
             Utils.flushBarDoneMessage("Booking Added", BuildContext, context);
             print("Booking Added");
@@ -264,23 +268,25 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                 headers: {
                   'Content-Type': 'application/json; charset=UTF-8',
                   'Authorization':
-                      'key=AAAA-DnuRMI:APA91bEqnn3baxUKSOAGZL_aPhNRzZO_NIH4ITJl5Hkp6eUux7LHZX5IDuHgRorG7R3q5YBZ_2qUEsXnq5X8OBo9h9iRg1RHfyMaD0hm1oI4TfrIyl3zHKpYRwrvM-TShXcl-nemfZNU'
-                });
+                      'key=AAAAPYagRB8:APA91bE1FGVhmf_aJKRHcXMZt3qTqfrXdcv-U_ZmHY32u9XfoBcFeyNc9_qXhjS5X9oEH0um4Z9odrwRVxXMT6kjtLdw_0JzEbFo0_MpOUWv1NJNppSOmnNTMTEH0ky9Q-7r5H2uCV6y'
+                }).then((value) {
+              log(value.statusCode.toString());
+            });
             Navigator.pop(context);
             Utils.flushBarDoneMessage("Booking Added", BuildContext, context);
             print("Booking Added");
           }).catchError((error) => print("Failed to add booking: $error")));
     }
-    print('payment intent' + paymentIntentData!['id'].toString());
-    print('payment intent' + paymentIntentData!['client_secret'].toString());
-    print('payment intent' + paymentIntentData!['amount'].toString());
-    print('payment intent' + paymentIntentData.toString());
+    // print('payment intent' + paymentIntentData!['id'].toString());
+    // print('payment intent' + paymentIntentData!['client_secret'].toString());
+    // print('payment intent' + paymentIntentData!['amount'].toString());
+    // print('payment intent' + paymentIntentData.toString());
     //orderPlaceApi(paymentIntentData!['id'].toString());
 
     ScaffoldMessenger.of(context)
         .showSnackBar(const SnackBar(content: Text("paid successfully")));
 
-    paymentIntentData = null;
+    // paymentIntentData = null;
   }
 }
 

@@ -39,31 +39,31 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
   List<PersistentBottomNavBarItem> _navBarItems() {
     return [
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.home, color: AppColors.navIconColor),
+          icon: Icon(Icons.home, color: AppColors.iconBlueColor),
           inactiveIcon: Icon(Icons.home, color: Colors.grey.shade100),
           activeColorPrimary: AppColors.primaryIconColor),
       // PersistentBottomNavBarItem(
-      //     icon: Icon(CupertinoIcons.search, color: AppColors.navIconColor),
+      //     icon: Icon(CupertinoIcons.search, color: AppColors.iconBlueColor),
       //     activeColorPrimary: AppColors.primaryIconColor,
       //     inactiveIcon:
       //         Icon(CupertinoIcons.search, color: Colors.grey.shade100)),
       // PersistentBottomNavBarItem(
-      //     icon: Icon(Icons.add, color: AppColors.navIconColor),
-      //     activeColorPrimary: AppColors.navIconColor,
+      //     icon: Icon(Icons.add, color: AppColors.iconBlueColor),
+      //     activeColorPrimary: AppColors.iconBlueColor,
       //     inactiveIcon: Icon(Icons.add, color: Colors.grey.shade100)),
       PersistentBottomNavBarItem(
-          icon: Icon(CupertinoIcons.calendar, color: AppColors.navIconColor),
+          icon: Icon(CupertinoIcons.calendar, color: AppColors.iconBlueColor),
           inactiveIcon:
               Icon(CupertinoIcons.calendar, color: Colors.grey.shade100),
           activeColorPrimary: AppColors.primaryIconColor),
       PersistentBottomNavBarItem(
           icon: Icon(Icons.contact_support_outlined,
-              color: AppColors.navIconColor),
+              color: AppColors.iconBlueColor),
           inactiveIcon:
               Icon(Icons.contact_support_outlined, color: Colors.grey.shade100),
           activeColorPrimary: AppColors.primaryIconColor),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.person_outline, color: AppColors.navIconColor),
+          icon: Icon(Icons.person_outline, color: AppColors.iconBlueColor),
           inactiveIcon: Icon(Icons.person_outline, color: Colors.grey.shade100),
           activeColorPrimary: AppColors.primaryIconColor),
     ];
@@ -87,7 +87,7 @@ class _BarberDashboardScreenState extends State<BarberDashboardScreen> {
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(20),
         adjustScreenBottomPaddingOnCurve: false,
-        colorBehindNavBar: Colors.white,
+        colorBehindNavBar: Theme.of(context).colorScheme.primary,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
